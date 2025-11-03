@@ -3,6 +3,9 @@
 
 %{!?_version:%define _version %(curl -sL %{baseurl}/stable 2>/dev/null || echo "2.0.31")}
 
+%define __arch_install_post %{nil}
+%define __os_install_post %{nil}
+
 Name:           claude
 Version:        %{_version}
 Release:        2%{?dist}
@@ -45,6 +48,7 @@ Claude Code is an agentic coding tool that lives in your terminal, understands y
 * Sat Nov 01 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.31-2
 - Disable telemetry related environmental variables
 - Add aarch64 GitHub Actions workflow for CI
+- Modify spec file
 
 * Sat Nov 01 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.31-1
 - Initial RPM package for Claude Code

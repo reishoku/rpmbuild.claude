@@ -42,6 +42,10 @@ jobs:
         run: |
           cp claude.spec ~/rpmbuild/SPECS/
 
+      - name: Copy source file
+        run: |
+          find . -mindepth 1 -maxdepth 1 -type f -iname '*' -and -not -iname '.git' -exec cp -r {} ~/rpmbuild/SOURCES/ \;
+
       - name: Download source files
         run: |
           cd ~/rpmbuild/SOURCES

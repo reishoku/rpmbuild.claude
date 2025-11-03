@@ -5,7 +5,7 @@
 
 Name:           claude
 Version:        %{_version}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Claude Code
 
 License:        Proprietary
@@ -18,7 +18,8 @@ URL:            https://claude.ai
 %global claude_arch linux-arm64
 %endif
 
-Source0:        %{baseurl}/%{version}/%{claude_arch}/claude
+Source0:  %{baseurl}/%{version}/%{claude_arch}/claude
+Source10: claude-wrapper
 
 %description
 Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows -- all through natural language commands.
@@ -31,11 +32,18 @@ Claude Code is an agentic coding tool that lives in your terminal, understands y
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{_bindir}
 
-%{__install} -m 0755 %{SOURCE0} %{buildroot}%{_bindir}/claude
+%{__mkdir_p} %{buildroot}%{_libexecdir}/%{name}
+%{__install} -m 0644 %{SOURCE0}  %{buildroot}%{_libexecdir}/claude
+%{__install} -m 0644 %{SOURCE10} %{buildroot}%{_bindir}/claude
 
 %files
 %{_bindir}/claude
+%dir %{_libexecdir}/claude
+%{_libexecdir}/claude/claude
 
 %changelog
+* Sat Nov 01 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.31-2
+- Disable telemetry related environmental variables
+
 * Sat Nov 01 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.31-1
 - Initial RPM package for Claude Code

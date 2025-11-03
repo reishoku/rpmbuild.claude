@@ -33,8 +33,8 @@ Claude Code is an agentic coding tool that lives in your terminal, understands y
 %{__mkdir_p} %{buildroot}%{_bindir}
 
 %{__mkdir_p} %{buildroot}%{_libexecdir}/%{name}
-%{__install} -m 0644 %{SOURCE0}  %{buildroot}%{_libexecdir}/claude
-%{__install} -m 0644 %{SOURCE10} %{buildroot}%{_bindir}/claude
+%{__install} -m 0755 %{SOURCE0}  %{buildroot}%{_libexecdir}/claude
+%{__install} -m 0755 %{SOURCE10} %{buildroot}%{_bindir}/claude
 
 %files
 %{_bindir}/claude

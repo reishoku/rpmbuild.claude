@@ -17,12 +17,16 @@ env:
 
 jobs:
   build-rpm:
-    runs-on: ubuntu-latest
-    container:
-      image: almalinux:9
     strategy:
       matrix:
-        arch: [x86_64]
+        include:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    container:
+      image: almalinux:10
 
     steps:
       - name: Checkout repository
@@ -31,7 +35,6 @@ jobs:
       - name: Install RPM build tools
         run: |
           dnf -q --refresh makecache -y
-          dnf swap --setopt='install_weak_deps=False' -y --allowerasing curl-minimal curl
           dnf -q --setopt='install_weak_deps=False' install -y curl findutils @"RPM Development Tools"
 
       - name: Set up RPM build environment

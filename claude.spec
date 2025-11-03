@@ -8,11 +8,14 @@
 
 Name:           claude
 Version:        %{_version}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Claude Code
 
 License:        Proprietary
 URL:            https://claude.ai
+
+Recommends: epel-release
+Requires: ripgrep
 
 %ifarch x86_64
 %global claude_arch linux-x64
@@ -45,7 +48,11 @@ Claude Code is an agentic coding tool that lives in your terminal, understands y
 %{_libexecdir}/claude/claude
 
 %changelog
-* Sat Nov 01 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.31-2
+* Tue Nov 04 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.31-3
+- Disable telemetry related environmental variables, again
+- Make use of system-provided ripgrep (available in EPEL)
+
+* Mon Nov 03 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.31-2
 - Disable telemetry related environmental variables
 - Add aarch64 GitHub Actions workflow for CI
 - Modify spec file

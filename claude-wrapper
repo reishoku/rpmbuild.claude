@@ -1,7 +1,10 @@
 #!/usr/bin/bash
 
-export DISABLE_TELEMETRY=''
-export DISABLE_ERROR_REPORTING=''
-export DISABLE_BUG_COMMAND=''
+export DISABLE_AUTOUPDATER='1'
+export DISABLE_TELEMETRY='1'
+export DISABLE_ERROR_REPORTING='1'
+export DISABLE_BUG_COMMAND='1'
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC='1'
+export USE_BUILTIN_RIPGREP='0' # use ripgrep from system
 
 exec `dirname ${0}`/../libexec/claude/claude

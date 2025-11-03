@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/bash
 
 export DISABLE_TELEMETRY=''
 export DISABLE_ERROR_REPORTING=''

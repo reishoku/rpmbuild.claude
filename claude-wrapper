@@ -4,4 +4,4 @@ export DISABLE_TELEMETRY=''
 export DISABLE_ERROR_REPORTING=''
 export DISABLE_BUG_COMMAND=''
 
-exec ${0}/../libexec/claude/claude
+exec `dirname ${0}`/../libexec/claude/claude

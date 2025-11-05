@@ -12,16 +12,21 @@ env:
   CLAUDE_VERSION: 2.0.32
 
 jobs:
-  build-rpm-x86_64:
+  build-rpm:
     strategy:
       matrix:
-        arch: ["x86_64"]
+        runs-on: [
+          "ubuntu-24.04",
+          "ubuntu-24.04-arm"
+        ]
         container: [
           "almalinux:9",
           "almalinux:10",
-          "almalinux:10-kitten"
+          "almalinux:10-kitten",
+          "quay.io/centos/centos:stream9",
+          "quay.io/centos/centos:stream10"
         ]
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runs-on }}
     container:
       image: ${{ matrix.container }}
 
@@ -68,60 +73,4 @@ jobs:
           find ~/rpmbuild/RPMS -type f -name "*.rpm" -ls
           find ~/rpmbuild/RPMS -type f -name "*.rpm" -exec rpm -qpi {} \+
           find ~/rpmbuild/RPMS -type f -name "*.rpm" -exec rpm -qpl {} \+
-
-  build-rpm-aarch64:
-    strategy:
-      matrix:
-        arch: ["aarch64"]
-        container: [
-          "almalinux:9",
-          "almalinux:10",
-          "almalinux:10-kitten"
-        ]
-    runs-on: ubuntu-24.04-arm
-    container:
-      image: ${{ matrix.container }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Install RPM build tools
-        run: |
-          dnf -q --refresh makecache -y
-          dnf -q --setopt='install_weak_deps=False' install -y findutils @"RPM Development Tools"
-
-      - name: Set up RPM build environment
-        run: |
-          rpmdev-setuptree
-
-      - name: Copy spec file
-        run: |
-          cp claude.spec ~/rpmbuild/SPECS/
-
-      - name: Copy source file
-        run: |
-          find . -mindepth 1 -maxdepth 1 -type f -iname '*' -and -not -iname '.git' -exec cp -r {} ~/rpmbuild/SOURCES/ \;
-
-      - name: Download source files
-        run: |
-          cd ~/rpmbuild/SOURCES
-          rpmdev-spectool -g ../SPECS/claude.spec
-
-          chmod +x claude
-          find . -mindepth 1 -maxdepth 1 -type f -executable
-
-      - name: Build RPM
-        run: |
-          cd ~/rpmbuild/SPECS
-          echo "Building RPM for version ${CLAUDE_VERSION}"
-          rpmbuild -bb \
-            --nodebuginfo \
-            --define "version ${CLAUDE_VERSION}" \
-            ~/rpmbuild/SPECS/claude.spec
-
-      - name: List built RPMs
-        run: |
-          find ~/rpmbuild/RPMS -type f -name "*.rpm" -ls
-          find ~/rpmbuild/RPMS -type f -name "*.rpm" -exec rpm -qpi {} \+
-          find ~/rpmbuild/RPMS -type f -name "*.rpm" -exec rpm -qpl {} \+
+ 

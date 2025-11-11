@@ -3,4 +3,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
+      timezone: "Asia/Tokyo"
       interval: "daily"
+    open-pull-request-limit: 1
+   allow:
+     dependency-type: "direct"

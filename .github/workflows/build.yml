@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  CLAUDE_VERSION: 2.0.32
+  CLAUDE_VERSION: 2.0.37
 
 jobs:
   build-rpm:

@@ -1,7 +1,7 @@
 
 %global baseurl https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases
 
-%{!?_version:%define _version %(curl -sL %{baseurl}/stable 2>/dev/null || echo "2.0.32")}
+%{!?_version:%define _version %(curl -sL %{baseurl}/stable 2>/dev/null || echo "2.0.37")}
 
 %define __arch_install_post %{nil}
 %define __os_install_post %{nil}
@@ -48,6 +48,9 @@ Claude Code is an agentic coding tool that lives in your terminal, understands y
 %{_libexecdir}/claude/claude
 
 %changelog
+* Tue Nov 11 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.37-1
+- Update to 2.0.37
+
 * Tue Nov 04 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.32-1
 - Update to 2.0.32
 

@@ -6,5 +6,5 @@ updates:
       timezone: "Asia/Tokyo"
       interval: "daily"
     open-pull-request-limit: 1
-   allow:
-     dependency-type: "direct"
+    allow:
+      dependency-type: "direct"

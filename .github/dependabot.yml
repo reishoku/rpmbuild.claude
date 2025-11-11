@@ -5,4 +5,4 @@ updates:
     schedule:
       timezone: "Asia/Tokyo"
       interval: "daily"
-    open-pull-request-limit: 1
+    open-pull-requests-limit: 1

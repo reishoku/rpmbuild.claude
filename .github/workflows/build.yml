@@ -34,7 +34,7 @@ jobs:
       - name: Install RPM build tools
         run: |
           dnf -q --refresh makecache -y
-          dnf -q --setopt='install_weak_deps=False' install -y findutils @"RPM Development Tools"
+          dnf -q --setopt='install_weak_deps=False' install -y findutils jq @"RPM Development Tools"
 
       - name: Set up RPM build environment
         run: |

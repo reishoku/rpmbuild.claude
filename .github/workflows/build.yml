@@ -8,9 +8,6 @@ on:
       - '.github/workflows/build.yml'
   workflow_dispatch:
 
-env:
-  CLAUDE_VERSION: 2.0.37
-
 jobs:
   build-rpm:
     strategy:
@@ -43,6 +40,11 @@ jobs:
         run: |
           rpmdev-setuptree
 
+      - name: Get Claude Code version
+        run: |
+          echo "CLAUDE_VERSION=$(jq -r '.[]."@anthropic-ai/claude-code"' package.json)" >> $GITHUB_ENV
+
+
       - name: Copy spec file
         run: |
           cp claude.spec ~/rpmbuild/SPECS/
@@ -65,7 +67,7 @@ jobs:
           echo "Building RPM for version ${CLAUDE_VERSION}"
           rpmbuild -bb \
             --nodebuginfo \
-            --define "version ${CLAUDE_VERSION}" \
+            --define "_version ${CLAUDE_VERSION}" \
             ~/rpmbuild/SPECS/claude.spec
 
       - name: List built RPMs

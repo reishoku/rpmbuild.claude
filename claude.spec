@@ -1,7 +1,7 @@
 
 %global baseurl https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases
 
-%{!?_version:%define _version %(curl -sL %{baseurl}/stable 2>/dev/null || echo "2.0.37")}
+%{!?_version: %global _version %(jq -r '.[]."@anthropic-ai/claude-code"' package.json)}
 
 %define __arch_install_post %{nil}
 %define __os_install_post %{nil}

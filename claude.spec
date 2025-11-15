@@ -6,7 +6,7 @@
 %define __arch_install_post %{nil}
 %define __os_install_post %{nil}
 
-Name:           claude
+Name:           claude-code
 Version:        %{_version}
 Release:        1%{?dist}
 Summary:        Claude Code
@@ -16,6 +16,9 @@ URL:            https://claude.ai
 
 Recommends: epel-release
 Requires: ripgrep
+
+Provides: claude
+Provides: claude-code
 
 %ifarch x86_64
 %global claude_arch linux-x64
@@ -39,13 +42,13 @@ Claude Code is an agentic coding tool that lives in your terminal, understands y
 %{__mkdir_p} %{buildroot}%{_bindir}
 
 %{__mkdir_p} %{buildroot}%{_libexecdir}/%{name}
-%{__install} -m 0755 %{SOURCE0}  %{buildroot}%{_libexecdir}/claude
+%{__install} -m 0755 %{SOURCE0}  %{buildroot}%{_libexecdir}/%{name}/claude-code
 %{__install} -m 0755 %{SOURCE10} %{buildroot}%{_bindir}/claude
 
 %files
 %{_bindir}/claude
-%dir %{_libexecdir}/claude
-%{_libexecdir}/claude/claude
+%dir %{_libexecdir}/%{name}
+%{_libexecdir}/%{name}/claude-code
 
 %changelog
 * Sat Nov 15 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.41-1

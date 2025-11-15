@@ -51,6 +51,9 @@ Claude Code is an agentic coding tool that lives in your terminal, understands y
 %{_libexecdir}/%{name}/claude-code
 
 %changelog
+* Sun Nov 16 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.42-1
+- Update to 2.0.42
+
 * Sat Nov 15 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.41-1
 - Update to 2.0.41
 

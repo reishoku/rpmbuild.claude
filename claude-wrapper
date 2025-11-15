@@ -7,4 +7,4 @@ export DISABLE_BUG_COMMAND='1'
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC='1'
 export USE_BUILTIN_RIPGREP='0' # use ripgrep from system
 
-exec `dirname ${0}`/../libexec/claude/claude
+exec `dirname ${0}`/../libexec/claude/claude-code

@@ -14,6 +14,8 @@ Summary:        Claude Code
 License:        Proprietary
 URL:            https://claude.ai
 
+BuildRequires: jq
+
 Recommends: epel-release
 Requires: ripgrep
 

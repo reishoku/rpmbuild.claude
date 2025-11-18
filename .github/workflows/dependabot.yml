@@ -64,7 +64,7 @@ jobs:
           fi
 
           rpmdev-bumpspec \
-            -u 'reishoku <reishoku.misc@pm.me>' \
+            -u 'KOSHIKAWA Kenichi <reishoku.misc@pm.me>' \
             -d "$(env TZ='Asia/Tokyo' LC_TIME=C date '+%a %b %d %Y')" \
             -n "${NEW_VERSION}" \
             -c "Update to ${NEW_VERSION}" \

@@ -41,7 +41,7 @@ jobs:
       - name: Prepare and update changelog using rpmdev-bumpspec
         id: bump-spec
         env:
-          NEW_VERSION: ${{ steps.meta.outputs.new-version }}
+          NEW_VERSION: "${{ steps.meta.outputs.new-version }}"
           LANG: C
         run: |
           set -euo pipefail

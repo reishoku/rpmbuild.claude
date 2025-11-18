@@ -45,6 +45,7 @@ jobs:
           LANG: C
         run: |
           set -euo pipefail
+          export NEW_VERSION="${{ steps.meta.outputs.new-version }}"
 
           curl -sLO 'https://pagure.io/rpmdevtools/raw/main/f/rpmdev-bumpspec'
           curl -sLO 'https://pagure.io/rpmdevtools/raw/main/f/rpmdev-packager'

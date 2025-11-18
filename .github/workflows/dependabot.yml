@@ -36,7 +36,7 @@ jobs:
       - name: Instal tools
         run: |
           sudo apt-get update -y -q
-          sudo apt-get install -y -q rpmdevtools jq git
+          sudo apt-get install -y -q rpm-i18n jq git
 
       - name: Prepare and update changelog using rpmdev-bumpspec
         id: bump-spec

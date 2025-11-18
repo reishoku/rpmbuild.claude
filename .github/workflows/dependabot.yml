@@ -76,7 +76,7 @@ jobs:
       - name: Commit and push
         if: steps.bump-spec.outputs.changed == 'true'
         env:
-          NEW_VERSION: ${{ steps.prep.outputs.new_version }}
+          NEW_VERSION: "${{ steps.meta.outputs.new-version }}"
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"

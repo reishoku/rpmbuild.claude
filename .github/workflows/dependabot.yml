@@ -45,6 +45,9 @@ jobs:
           LANG: C
         run: |
           set -euo pipefail
+
+          curl -sLO 'https://pagure.io/rpmdevtools/raw/main/f/rpmdev-bumpspec'
+          chmod +x rpmdev-bumpspec
           
           if [ -z "${NEW_VERSION:-}" ] || [ "${NEW_VERSION}" = "null" ]; then 
             NEW_VERSION="$(jq -r '.[]."@anthropic-ai/claude-code"' package.json)"
@@ -55,7 +58,7 @@ jobs:
             exit 0
           fi
 
-          rpmdev-bumpspec \
+          ./rpmdev-bumpspec \
             -u 'reishoku <reishoku.misc@pm.me>' \
             -d $(env TZ='Asia/Tokyo' LC_TIME=C date '+%a %b %d %Y') \
             -r '1%{?dist}' \

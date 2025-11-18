@@ -50,8 +50,8 @@ jobs:
           curl -sLO 'https://pagure.io/rpmdevtools/raw/main/f/rpmdev-packager'
           chmod +x rpmdev-bumpspec
           chmod +x rpmdev-packager
-          mv rpmdev-bumpspec /usr/bin/
-          mv rpmdev-packager /usr/bin/
+          sudo mv rpmdev-bumpspec /usr/bin/
+          sudo mv rpmdev-packager /usr/bin/
           
           if [ -z "${NEW_VERSION:-}" ] || [ "${NEW_VERSION}" = "null" ]; then 
             NEW_VERSION="$(jq -r '.[]."@anthropic-ai/claude-code"' package.json)"

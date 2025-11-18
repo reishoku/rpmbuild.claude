@@ -64,7 +64,7 @@ jobs:
 
           rpmdev-bumpspec \
             -u 'reishoku <reishoku.misc@pm.me>' \
-            -d $(env TZ='Asia/Tokyo' LC_TIME=C date '+%a %b %d %Y') \
+            -d "$(env TZ='Asia/Tokyo' LC_TIME=C date '+%a %b %d %Y')" \
             -r '1%{?dist}' \
             -n "${NEW_VERSION}" \
             -c "Update to ${NEW_VERSION}" \

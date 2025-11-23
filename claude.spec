@@ -7,7 +7,7 @@
 %define __os_install_post %{nil}
 
 Name:           claude-code
-Version:        2.0.49
+Version:        2.0.50
 Release:        1%{?dist}
 Summary:        Claude Code
 

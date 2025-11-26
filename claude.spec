@@ -7,7 +7,7 @@
 %define __os_install_post %{nil}
 
 Name:           claude-code
-Version:        2.0.53
+Version:        2.0.54
 Release:        1%{?dist}
 Summary:        Claude Code
 
@@ -53,6 +53,9 @@ Claude Code is an agentic coding tool that lives in your terminal, understands y
 %{_libexecdir}/%{name}/claude-code
 
 %changelog
+* Thu Nov 27 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.54-1
+- Update to 2.0.54
+
 * Tue Nov 25 2025 KOSHIKAWA Kenichi <reishoku.misc@pm.me> - 2.0.53-1
 - Update to 2.0.53
 

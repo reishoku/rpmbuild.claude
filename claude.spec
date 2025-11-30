@@ -1,8 +1,6 @@
 
 %global baseurl https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases
 
-%{!?_version: %global _version %(jq -r '.[]."@anthropic-ai/claude-code"' package.json)}
-
 %define __arch_install_post %{nil}
 %define __os_install_post %{nil}
 
@@ -13,8 +11,6 @@ Summary:        Claude Code
 
 License:        Proprietary
 URL:            https://claude.ai
-
-BuildRequires: jq
 
 Recommends: epel-release
 Requires: ripgrep

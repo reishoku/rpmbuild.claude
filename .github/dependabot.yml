@@ -7,3 +7,10 @@ updates:
       interval: "cron"
       cronjob: "0 5 * * *"
     open-pull-requests-limit: 1
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      timezone: "Asia/Tokyo"
+      interval: "cron"
+      cronjob: "30 9 * * *"
+    open-pull-requests-limit: 1

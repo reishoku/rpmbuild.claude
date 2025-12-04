@@ -6,6 +6,6 @@ updates:
       timezone: "Asia/Tokyo"
       interval: "cron"
       cronjob: "0 5 * * *"
-    assignee:
+    assignees:
       - "reishoku"
     open-pull-requests-limit: 1

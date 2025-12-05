@@ -33,23 +33,18 @@ jobs:
 
       - name: Install RPM build tools
         run: |
-          dnf -q --refresh makecache -y
-          dnf -q --setopt='install_weak_deps=False' install -y findutils jq @"RPM Development Tools"
+          echo "install_weak_deps=False" >> /etc/dnf/dnf.conf
+          echo "max_parallel_downloads=20" >> /etc/dnf/dnf.conf
+          echo "max_downloads_per_mirror=20" >> /etc/dnf/dnf.conf
+          dnf -q --refresh install -y findutils @"RPM Development Tools"
 
       - name: Set up RPM build environment
         run: |
           rpmdev-setuptree
 
-      - name: Get Claude Code version
+      - name: Copy spec and source files
         run: |
-          echo "CLAUDE_VERSION=$(jq -r '.[]."@anthropic-ai/claude-code"' package.json)" >> $GITHUB_ENV
-
-      - name: Copy spec file
-        run: |
-          cp claude.spec ~/rpmbuild/SPECS/
-
-      - name: Copy source file
-        run: |
+          find . -mindepth 1 -maxdepth 1 -type f -iname '*.spec' -and -not -iname '.git' -exec cp -r {} ~/rpmbuild/SPECS/ \;
           find . -mindepth 1 -maxdepth 1 -type f -iname '*' -and -not -iname '.git' -exec cp -r {} ~/rpmbuild/SOURCES/ \;
 
       - name: Download source files
@@ -59,11 +54,8 @@ jobs:
 
       - name: Build RPM
         run: |
-          cd ~/rpmbuild/SPECS
-          echo "Building RPM for version ${CLAUDE_VERSION}"
           rpmbuild -bb \
             --nodebuginfo \
-            --define "_version ${CLAUDE_VERSION}" \
             ~/rpmbuild/SPECS/claude.spec
 
       - name: List built RPMs
